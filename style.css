@@ -321,17 +321,23 @@ section{
 
 
 .progress-line.html span {
-    width: 60%;
+    width: 100%;
 }
 
 /* Progress untuk CSS */
 .Technical-bars .bar .progress-line.css span {
-    width: 20%;
+    width: 50%;
+}
+
+/* Progress untuk Edit */
+.Technical-bars .bar .progress-line.edit span {
+    width: 100%;
+
 }
 
 /* Progress untuk Javascript */
 .Technical-bars .bar .progress-line.javascript span {
-    width: 85%;
+    width: 100%;
 }
 
 /* Progress untuk Python */
@@ -341,7 +347,7 @@ section{
 
 /* Progress untuk React */
 .Technical-bars .bar .progress-line.react span {
-    width: 30%;
+    width: 10%;
 }
 
 .Technical-bars .bar .progress-line span::after{
