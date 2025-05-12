@@ -1,5 +1,5 @@
 var typed = new Typed(".text", {
-    strings: ["Akuu Memiliki Wanita Yang Sangat Akuu Banggakan, Namanya Cynthia Shindie Lisnawati, Nama Yang Sangat Cantik Bukan?, Seperti Orangnya"],
+    strings: ["Di Saat Engkau Merasa Tidak Punya Siapa Siapa Untuk Bercerita Ingatlah Masih Ada Allah"],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
