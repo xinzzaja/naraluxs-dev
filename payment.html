@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Payment Coganz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --bg-2:#f5f6f8;
+  --text:#0b0b0c;
+  --muted:#6b7280;
+  --glass:rgba(255,255,255,.65);
+  --border:rgba(0,0,0,.08);
+  --shadow:rgba(0,0,0,.08);
+  --brand:linear-gradient(135deg,#0ea5e9,#8b5cf6,#22c55e);
+}
+[data-theme="dark"]{
+  --bg:#000000;
+  --bg-2:#0f0f12;
+  --text:#fafafa;
+  --muted:#a1a1aa;
+  --glass:rgba(20,20,22,.55);
+  --border:rgba(255,255,255,.12);
+  --shadow:rgba(0,0,0,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--bg);
+  color:var(--text);
+  transition:background .3s,color .3s;
+}
+.bg-grad{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:var(--brand);
+  filter:blur(120px);
+  opacity:.25;
+  animation:shift 20s ease-in-out infinite;
+}
+@keyframes shift{
+  0%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(180deg) scale(1.2)}
+  100%{transform:rotate(360deg) scale(1)}
+}
+.container{
+  width:100%;
+  max-width:420px;
+  padding:24px;
+  text-align:center; /* center semua isi */
+}
+.page{
+  display:none;
+  animation:fade .4s ease;
+}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.logo{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 12px 32px var(--shadow);
+  animation:float 6s ease-in-out infinite;
+  margin:0 auto;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
+}
+h1{
+  font-size:28px;
+  font-weight:600;
+  margin-top:16px;
+  background:var(--brand);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+h2{font-size:20px;font-weight:600;margin-bottom:12px}
+p{color:var(--muted);margin-bottom:24px}
+.btn{
+  flex:1;
+  padding:14px 28px;
+  border:none;
+  border-radius:16px;
+  font-weight:600;
+  background:var(--brand);
+  color:#fff;
+  cursor:pointer;
+  transition:transform .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.glass-card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:20px;
+  backdrop-filter:blur(20px);
+  margin-bottom:20px;
+}
+.qr{
+  width:100%;
+  max-width:240px;
+  border-radius:16px;
+  margin-bottom:12px;
+}
+.copy-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-align:left;
+}
+.copy-row .logo-sm{
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  border-radius:14px;
+  background:#fff;
+}
+.copy-row .flex-col{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.copy-row .title{
+  font-weight:600;
+  font-size:16px;
+  line-height:1;
+}
+.copy-row .number{
+  font-weight:600;
+  font-size:16px;
+  color:var(--muted);
+}
+.copy-btn{
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  cursor:pointer;
+  padding:4px 8px;
+  transition:color .2s;
+}
+.copy-btn:hover{color:var(--text)}
+.toast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translate(-50%,0) scale(0);
+  background:var(--brand);
+  color:#fff;
+  padding:12px 20px;
+  border-radius:12px;
+  font-size:14px;
+  transition:transform .3s;
+}
+.toast.show{transform:translate(-50%,0) scale(1)}
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+.bottom-bar{
+  display:flex;
+  gap:12px;
+  margin-top:24px;
+  justify-content:center;
+  align-items:center;
+}
+.anim-btn{
+  padding:12px 20px;
+  border-radius:12px;
+  border:none;
+  background:var(--brand);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:transform .2s;
+}
+.anim-btn:hover{transform:scale(1.05)}
+.footer{
+  margin-top:40px;
+  font-size:14px;
+  color:var(--muted);
+}
+</style>
+</head>
+<body>
+<div class="bg-grad"></div>
+
+<div class="container">
+  <!-- Home -->
+  <section id="home" class="page active" aria-label="Home">
+    <img src="https://i.imgur.com/IuiHMfY.jpeg" alt="Logo Coganz" class="logo">
+    <h1>Selamat Datang di Payment Coganz</h1>
+    <p>Lakukan pembayaran dengan mudah dan cepat.</p>
+
+    <div class="bottom-bar">
+      <button class="btn" onclick="toPage('payment')">Masuk ke Payment</button>
+      <button class="anim-btn" onclick="toggleTheme()" aria-label="Toggle tema">☀️</button>
+      <button class="anim-btn" onclick="toggleMusic()" aria-label="Toggle musik">🔊</button>
+    </div>
+  </section>
+
+  <!-- Payment -->
+  <section id="payment" class="page" aria-label="Payment">
+    <div class="top-bar">
+      <button class="anim-btn" onclick="toPage('home')" aria-label="Kembali">Kembali</button>
+      <div>
+        <button class="anim-btn" onclick="toggleTheme()" aria-label="Toggle tema">☀️</button>
+        <button class="anim-btn" onclick="toggleMusic()" aria-label="Toggle musik">🔊</button>
+      </div>
+    </div>
+
+    <h2>QRIS Payment</h2>
+    <div style="text-align:center">
+      <img id="qris" src="https://i.imgur.com/DUOcH82.png" alt="QRIS" class="qr">
+    </div>
+
+    <h2>Metode Lainnya</h2>
+
+    <!-- DANA -->
+    <div class="glass-card">
+      <div class="copy-row">
+        <img src="https://i.imgur.com/UYOgfL2.jpeg" alt="DANA" class="logo-sm">
+        <div class="flex-col">
+          <span class="title">DANA</span>
+          <span class="number">085168902436</span>
+        </div>
+        <button class="copy-btn" onclick="copyText('085168902436')">Salin</button>
+      </div>
+    </div>
+
+    <!-- GoPay -->
+    <div class="glass-card">
+      <div class="copy-row">
+        <img src="https://i.imgur.com/zAGmGhX.jpeg" alt="GoPay" class="logo-sm">
+        <div class="flex-col">
+          <span class="title">GoPay</span>
+          <span class="number">085165829430</span>
+        </div>
+        <button class="copy-btn" onclick="copyText('085165829430')">Salin</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">© 2025 !s - GanXz7</div>
+</div>
+
+<div id="toast" class="toast">Copied ✅</div>
+
+<audio id="bgm" loop>
+  <source src="https://lit2talks.com/tool/play_audio.php?id=MjgwMQ%3D%3D" type="audio/mpeg">
+</audio>
+
+<script>
+// Theme toggle
+const root = document.documentElement;
+const themeKey = 'Coganz-theme';
+function applyTheme(t){
+  root.setAttribute('data-theme', t);
+  localStorage.setItem(themeKey, t);
+}
+function initTheme(){
+  const saved = localStorage.getItem(themeKey);
+  const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  applyTheme(saved || prefers);
+}
+function toggleTheme(){
+  const current = root.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+}
+initTheme();
+
+// Music toggle
+const bgm = document.getElementById('bgm');
+let musicPlaying = false;
+function toggleMusic(){
+  const btns = document.querySelectorAll('[aria-label="Toggle musik"]');
+  if(musicPlaying){
+    bgm.pause();
+    musicPlaying = false;
+    btns.forEach(b=>b.textContent="🔇");
+  }else{
+    bgm.play().catch(()=>{});
+    musicPlaying = true;
+    btns.forEach(b=>b.textContent="🔊");
+  }
+}
+
+// Page navigation
+function toPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// Copy clipboard
+function copyText(text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const toast = document.getElementById('toast');
+    toast.textContent = 'Nomor disalin ✅';
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),2000);
+  });
+}
+</script>
+</body>
+</html>
