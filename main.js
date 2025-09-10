@@ -1,7 +1,7 @@
 var typed = new Typed(".text", {
-    strings: ["Pada Akhirnya Senyum Adalah Cara Terbaik ku Untuk Menutupi Sebuah Luka."],
-    typeSpeed: 80,
-    backSpeed: 80,
+    strings: ["Maaf jika website ini tidak sempurna, karena mau sesempurna apapun itu kalo bukan kita yang dia mau lantas bagaimana?"],
+    typeSpeed: 90,
+    backSpeed: 95,
     backDelay: 1000,
     loop: true
 });
